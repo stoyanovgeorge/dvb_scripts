@@ -6,6 +6,7 @@
 
 # Defining the timeout for the tcp command
 time_out=30
+packets_number=1000
 #########################
 # The command line help #
 #########################
@@ -67,8 +68,8 @@ tcpdump_cmd() {
     printf '#%.0s' $(seq $total_chars)
     printf "\\n\\n"
     # Please uncomment the below line and comment the line after if you want to show the tcpdump statistics
-    # sudo tcpdump -nn -v -q -i "$1" -c 1000 multicast and udp and greater 1344 | sort | uniq | grep '>' 
-    sudo timeout "$time_out" tcpdump -nn -v -q -i "$1" -c 1000 multicast and udp and greater 1344 2>/dev/null | sort | uniq | grep '>' 
+    # sudo timeout "$time_out" tcpdump -nn -v -q -i "$1" -c "$packets_number" multicast and udp and greater 1344 | sort | uniq | grep '>' 
+    sudo timeout "$time_out" tcpdump -nn -v -q -i "$1" -c "$packets_number" multicast and udp and greater 1344 2>/dev/null | sort | uniq | grep '>' 
 }
 
 ################
